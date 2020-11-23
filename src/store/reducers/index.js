@@ -1,4 +1,6 @@
+import login from "./login";
 function index(state = {}, action) {
   return state;
 }
-export default { index };
+
+export default { index, login };
