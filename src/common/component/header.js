@@ -1,5 +1,6 @@
 import React from "react";
 import http from "../../store/action/http";
+import {Link} from "react-router-dom"
 
 function Header() {
 /*   http
@@ -23,7 +24,7 @@ function Header() {
         <a>导航</a>
       </nav>
       <h1 className="logo">miaov.com</h1>
-      <a className="user"></a>
+      <Link to={"/login"} className="user"></Link>
     </header>
   );
 }

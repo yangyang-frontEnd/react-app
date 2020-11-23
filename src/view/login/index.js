@@ -1,7 +1,20 @@
 import React from "react";
+import "../../common/css/login.css"
+import Login from "./login"
 
-function Login(props) {
-  return <div>我是登录页</div>;
+function index(props) {
+  return (
+    <div id="login_boxWrap">
+      <h2 className="login_register">
+        <span>登录&注册</span>
+      </h2>
+      <div className="login_register_box">
+        <div className="box">
+          <Login></Login>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Login;
+export default index;
