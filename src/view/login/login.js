@@ -9,9 +9,14 @@ function Login(props) {
   const [vcodeShow, setVcodeShow] = useState(false);
   const [vcodeSrc, setVcodeSrc] = useState("/miaov/user/verify?" + Date.now());
 
+  // 搜集表单数据 Post data
   function toLogin() {
     props
       .dispatch(
+        // 使用thunk中间件之后，dispatch就可以接收一个函数
+        // dispatch(function(dispatch,getState){
+        // 异步执行状态修改 Promise
+        // })
         login({
           verify: vcode,
           username: user,
@@ -22,10 +27,9 @@ function Login(props) {
         alert(data.msg);
         setTimeout(() => {
           if (data.code != 0) {
-            setVcodeSrc("/miaov/user/verify?" + Date.now())
+            setVcodeSrc("/miaov/user/verify?" + Date.now());
           } else {
-            
-        }
+          }
         }, 100);
       });
   }
@@ -100,5 +104,6 @@ function Login(props) {
   );
 }
 export default connect((res) => {
+  // console.log(res);
   return res;
 })(Login);
