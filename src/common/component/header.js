@@ -44,7 +44,7 @@ function Header(props) {
 
   let back = useBack();
 
-  let { user } = props;
+  let { user, changeShow } = props;
 
   let [isBtnShow, setBtnShow] = useState(false);
 
@@ -68,7 +68,7 @@ function Header(props) {
           <a
             className="header-btn-left iconfont icon-hycaidan"
             onClick={() => {
-              // changeShow();
+              changeShow();
             }}
           ></a>
         )}

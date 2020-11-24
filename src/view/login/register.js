@@ -1,58 +1,45 @@
 import React, { useState } from "react";
+import register from "../../store/action/register";
 import { connect } from "react-redux";
-import login from "../../store/action/login";
-import { withRouter } from "react-router-dom"; // 路由信息
-import {useBack} from "../../common/hook/index"
 
-function Login(props) {
-  // console.log(props);
-  const back = useBack()
-
+function Register(props) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [vcode, setVcode] = useState("");
   const [vcodeShow, setVcodeShow] = useState(false);
   const [vcodeSrc, setVcodeSrc] = useState("/miaov/user/verify?" + Date.now());
 
-let {setDeg} = props
+  let { setDeg } = props;
 
-  // 搜集表单数据 Post data
-  function toLogin() {
+  function toRegister() {
     props
       .dispatch(
-        // 使用thunk中间件之后，dispatch就可以接收一个函数
-        // dispatch(function(dispatch,getState){
-        // 异步执行状态修改 Promise
-        // })
-        login({
+        register({
           verify: vcode,
           username: user,
           password,
+          repassword: password2,
         })
       )
       .then((data) => {
         alert(data.msg);
         setTimeout(() => {
-          if (data.code != 0) {
-            setVcodeSrc("/miaov/user/verify?" + Date.now());
-          } else {
-            back(props.history)
+          if (data.code == 0) {
+            setDeg(0);
           }
+          setVcodeSrc("/miaov/user/verify?" + Date.now());
         }, 100);
       });
   }
 
   return (
-    <div className="login_box">
-      <figure className="user_img">
-        <img src={require("../../common/images/user_img.png").default} alt="" />
-        <figcaption>如有账号，请直接登录</figcaption>
-      </figure>
-      <div className="login_form">
+    <div className="register_box">
+      <h3>注册账号</h3>
+      <div className="register_form">
         <p>
           <input
             type="text"
-            name="username"
             placeholder="用户名"
             value={user}
             onChange={(e) => {
@@ -63,11 +50,20 @@ let {setDeg} = props
         <p>
           <input
             type="password"
-            name="userpassword"
-            placeholder="请输入密码"
+            placeholder="设置密码"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
+            }}
+          />
+        </p>
+        <p>
+          <input
+            type="password"
+            placeholder="确定密码"
+            value={password2}
+            onChange={(e) => {
+              setPassword2(e.target.value);
             }}
           />
         </p>
@@ -97,24 +93,30 @@ let {setDeg} = props
             ""
           )}
         </p>
+        <p></p>
         <button
           className="form_btn"
           onClick={() => {
-            toLogin();
+            toRegister();
           }}
         >
-          登录
+          马上注册
         </button>
         <p className="form_tip">
-          没有帐号？<a  onTouchStart={()=>{
-            setDeg(-180)
-          }}>立即注册</a>
+          已有帐号？
+          <a
+            onTouchStart={() => {
+              setDeg(0);
+            }}
+          >
+            立即登录
+          </a>
         </p>
       </div>
     </div>
   );
 }
+
 export default connect((res) => {
-  // console.log(res);
   return res;
-})(withRouter(Login));
+})(Register);
