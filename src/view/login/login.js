@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import login from "../../store/action/login";
+import { withRouter } from "react-router-dom"; // 路由信息
+import {useBack} from "../../common/hook/index"
 
 function Login(props) {
+  // console.log(props);
+  const back = useBack()
+
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [vcode, setVcode] = useState("");
@@ -29,6 +34,7 @@ function Login(props) {
           if (data.code != 0) {
             setVcodeSrc("/miaov/user/verify?" + Date.now());
           } else {
+            back(props.history)
           }
         }, 100);
       });
@@ -106,4 +112,4 @@ function Login(props) {
 export default connect((res) => {
   // console.log(res);
   return res;
-})(Login);
+})(withRouter(Login));

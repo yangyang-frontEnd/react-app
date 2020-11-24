@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import  login  from "../../store/action/login";
 
 function Index(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       <div>我是首页</div>
