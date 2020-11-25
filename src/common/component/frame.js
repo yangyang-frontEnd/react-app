@@ -30,7 +30,7 @@ function Frame(props) {
   return (
     <div>
       <Header changeShow={changeShow}></Header>
-      <Menu></Menu>
+      <Menu menuHide={menuHide}></Menu>
       <div
         id="main"
         style={{

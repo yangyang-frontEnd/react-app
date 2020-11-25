@@ -2,7 +2,7 @@ import React from "react";
 import Index from "../view/index";
 import Course from "../view/course/index";
 import Lecturer from "../view/lecturer";
-import Work from "../view/work"
+import Work from "../view/work";
 import Login from "../view/login";
 
 const routeList = [
@@ -39,13 +39,34 @@ const routeList = [
     },
   },
   {
-    name:"登录",
-    path:"/login",
-    exact:true,
-    render:(props)=>{
-        return <Login {...props}></Login>
-    }
-}
+    name: "登录",
+    path: "/login",
+    exact: true,
+    render: (props) => {
+      return <Login {...props}></Login>;
+    },
+  },
 ];
 
-export default routeList;
+const nav = [
+  {
+    name: "首页",
+    to: "/",
+    exact: true,
+    className: "iconfont icon-home",
+  },
+  {
+    name: "课程安排",
+    to: "/course",
+    exact: true,
+    className: "iconfont icon-kecheng",
+  },
+  {
+    name: "讲师团队",
+    to: "/lecturer",
+    exact: true,
+    className: "iconfont icon-peixunjiangshi",
+  },
+];
+
+export  {routeList,nav};
