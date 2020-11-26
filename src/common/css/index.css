@@ -43,6 +43,8 @@
   padding-top: 0.26666667rem;
   background: #f4fbfe;
   padding-bottom: 0.2rem;
+  /* border:0.01rem solid red; */
+  overflow: hidden;
 }
 .index_content .content_list {
   padding: 0 0.13333333rem;
@@ -242,6 +244,7 @@
 }
 .works_list {
   padding: 0 0.26666667rem;
+  overflow: hidden;
 }
 .works_list li {
   height: 4.73333333rem;
@@ -265,6 +268,7 @@
   box-sizing: border-box;
   width: 100%;
   color: #fff;
+  overflow: hidden;
 }
 .works_list .wrork_txt strong {
   float: left;
