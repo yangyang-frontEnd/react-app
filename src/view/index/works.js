@@ -1,7 +1,8 @@
-/* 
+import React from "react"
 
-
-      <div className="works">
+function Workers(props) {
+    return (
+        <div className="works">
         <h3>学员作品</h3>
         <ul className="works_list clearfix">
           <li>
@@ -81,5 +82,7 @@
           查看更多
         </a>
       </div>
+    )
+}
 
-*/
+export default Workers
