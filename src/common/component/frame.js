@@ -24,7 +24,14 @@ function Frame(props) {
   }
 
   useEffect(() => {
-    pageScroll = new BScroll(wrap.current);
+    /* better-scroll会默认阻止事件 如 a标签 href 
+       不想阻止默认   preventDefaultException
+        */
+    pageScroll = new BScroll(wrap.current, {
+      preventDefaultException: {
+        tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|AUDIO|A)$/,
+      },
+    });
   }, []);
 
   return (
@@ -41,7 +48,9 @@ function Frame(props) {
           menuHide();
         }}
       >
-        <div className="pageWrap" ref={wrap}>{props.children}</div>
+        <div className="pageWrap" ref={wrap}>
+          {props.children}
+        </div>
       </div>
     </div>
   );
