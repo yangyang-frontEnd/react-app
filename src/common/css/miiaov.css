@@ -92,8 +92,11 @@
 }
 .miiaov_txt .miiaov_img {
   height: 7.46666667rem;
-  background: #f8ad45;
   margin: 0.46666667rem 0;
+}
+.miiaov_txt .miiaov_img img{
+  width: 100%;
+  height: 100%;
 }
 .miiaov_txt a {
   color: #533bfd;
