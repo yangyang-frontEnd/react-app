@@ -5,6 +5,12 @@ import "../css/reset.css";
 import "../css/common.css";
 import BScroll from "better-scroll";
 import { useInnerHeight } from "../hook/index";
+// import Pullup from "@better-scroll/pull-up";
+// BScroll.use(Pullup);
+
+/* 
+index.js:1 [BScroll warn]: This plugin has been registered, maybe you need change plugin's name
+*/
 
 function Frame(props) {
   // console.log(props);
@@ -38,8 +44,14 @@ function Frame(props) {
             threshold: 200,
           }
         : false,
+      pullUpLoad: true,
     });
-    let handle = () => {
+    function handle() {
+      // console.log(getWorksData);
+      if(!getWorksData){
+        return
+      }
+      
       console.log("上拉加载更多");
       getWorksData().then((res) => {
         if (res) {
@@ -49,9 +61,6 @@ function Frame(props) {
           pageScroll.closePullUp();
         }
       });
-    };
-    if (!pullUp) {
-      return
     }
     pageScroll.on("pullingUp", handle);
   }, []);

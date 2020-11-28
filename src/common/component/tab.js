@@ -1,36 +1,38 @@
-import React,{useEffect,useRef,useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BScroll from "better-scroll";
 // import Slide from '@better-scroll/slide'
 // BScroll.use(Slide)
 export default function Tab(props) {
   // console.log(props);
-  let {data,render} = props
+  let { data, render } = props;
 
-  let bannerWrap = useRef(null)
+  let bannerWrap = useRef(null);
 
-  let bScroll = null
+  let bScroll = null;
 
-  let [now,setNow] = useState(0)
- 
-  useEffect(()=>{
-    bScroll = new BScroll(bannerWrap.current,{
-        scrollX:true,
-        scrollY:false,
-        eventPassthrough:"vertical",
-        slide: {
-          threshold: 100,
-          interval:1000
-        }, 
-        momentum: false,
-        bounce: false,
-        stopPropagation: true
-    })
+  let [now, setNow] = useState(0);
 
-    bScroll.on('slideWillChange', (page) => {
+  useEffect(() => {
+    bScroll = new BScroll(bannerWrap.current, {
+      
+      scrollX: true,
+      scrollY: false,
+      eventPassthrough: "vertical",
+      disableTouch: true,
+      slide: {
+        threshold: 100,
+        interval: 1000,
+      },
+      momentum: false,
+      bounce: false,
+      stopPropagation: true,
+    });
+
+    bScroll.on("slideWillChange", (page) => {
       // console.log(page);
-      setNow(page.pageX)
-    })
-  },[])
+      setNow(page.pageX);
+    });
+  }, []);
   return (
     <div className="banner">
       <div className="banner_img" ref={bannerWrap}>
@@ -40,13 +42,11 @@ export default function Tab(props) {
           })}
         </ul>
         <ul className="banner_nav">
-            {
-                data.map((item,index)=>{
-                    return <li key={index} 
-                    className={index === now?"active":''}
-                    ></li>
-                })
-            }
+          {data.map((item, index) => {
+            return (
+              <li key={index} className={index === now ? "active" : ""}></li>
+            );
+          })}
         </ul>
       </div>
     </div>

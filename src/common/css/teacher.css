@@ -125,6 +125,7 @@
   color: #666666;
 }
 .welcome {
+  box-sizing: border-box;
   margin: 0.26666667rem 0;
   padding-bottom: 0.4rem;
   background: linear-gradient(90deg, #4d94e2 0%, #4dc4e2 100%);
