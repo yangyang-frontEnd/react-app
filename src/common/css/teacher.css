@@ -17,9 +17,6 @@
   display: flex;
   height: 4rem;
 }
-.lecturer_list ul{
-  display: flex;
-}
 
 .lecturer_list li {
   width: 2.37333333rem;

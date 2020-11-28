@@ -39,17 +39,21 @@ function Frame(props) {
           }
         : false,
     });
-    pageScroll.on("pullingUp", () => {
+    let handle = () => {
       console.log("上拉加载更多");
       getWorksData().then((res) => {
         if (res) {
           pageScroll.finishPullUp();
           pageScroll.refresh();
         } else {
-          pageScroll.closePullUp()
+          pageScroll.closePullUp();
         }
       });
-    });
+    };
+    if (!pullUp) {
+      return
+    }
+    pageScroll.on("pullingUp", handle);
   }, []);
 
   return (
