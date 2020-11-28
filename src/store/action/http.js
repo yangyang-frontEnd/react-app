@@ -37,7 +37,7 @@ const http = axios.create({
       username: "miaov00";
       verify: "QTTM7";
     } */
-    console.log(qs.stringify(data));
+    // console.log(qs.stringify(data));
     // verify=KZWTN&username=miaov00&password=miaov12
 
     // 对 data 进行转换处理

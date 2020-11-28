@@ -23,6 +23,8 @@ function Frame(props) {
     setShowMenu(false);
   }
 
+  let { pullUp, getWorksData } = props;
+
   useEffect(() => {
     /* better-scroll会默认阻止事件 如 a标签 href 
        不想阻止默认   preventDefaultException
@@ -31,6 +33,22 @@ function Frame(props) {
       preventDefaultException: {
         tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|AUDIO|A)$/,
       },
+      pullUpLoad: pullUp
+        ? {
+            threshold: 200,
+          }
+        : false,
+    });
+    pageScroll.on("pullingUp", () => {
+      console.log("上拉加载更多");
+      getWorksData().then((res) => {
+        if (res) {
+          pageScroll.finishPullUp();
+          pageScroll.refresh();
+        } else {
+          pageScroll.closePullUp()
+        }
+      });
     });
   }, []);
 
