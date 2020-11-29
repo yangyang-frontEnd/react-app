@@ -3,6 +3,8 @@ import Frame from "../../common/component/frame";
 import "../../common/css/miiaov.css";
 import { connect } from "react-redux";
 import getWork from "../../store/action/getWork";
+import Skeleton from "../../common/component/skeleton";
+
 
 // useMemo 组件更新，组件挂载之前
 function Work(props) {
@@ -21,6 +23,7 @@ function Work(props) {
       })
     );
     return () => {
+      // reset 重置上一次数据
       dispatch({
         type: "WORK_LOAD",
       });
@@ -29,7 +32,7 @@ function Work(props) {
   return (
     <div>
       <Frame pullUp={true}>
-        <div></div>
+        <Skeleton></Skeleton>
       </Frame>
       <footer className="miiapv_footer">回复本帖</footer>
     </div>
