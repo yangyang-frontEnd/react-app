@@ -1,7 +1,7 @@
 export default function work(
   state = {
     data: {},
-    loading: false,
+    loading: true,
   },
   action
 ) {

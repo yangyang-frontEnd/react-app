@@ -4,7 +4,7 @@ import "../../common/css/miiaov.css";
 import { connect } from "react-redux";
 import getWork from "../../store/action/getWork";
 import Skeleton from "../../common/component/skeleton";
-
+import Tab from "../../common/component/tab";
 
 // useMemo 组件更新，组件挂载之前
 function Work(props) {
@@ -32,7 +32,18 @@ function Work(props) {
   return (
     <div>
       <Frame pullUp={true}>
-        <Skeleton></Skeleton>
+        {loading ? (
+          <Skeleton></Skeleton>
+        ) : (
+          <div className="workDetails">
+            <Tab
+              data={data.image_path?data.image_path.map((item) => item.path):[]}
+              render={(src) => {
+                return <img src={src}></img>;
+              }}
+            ></Tab>
+          </div>
+        )}
       </Frame>
       <footer className="miiapv_footer">回复本帖</footer>
     </div>

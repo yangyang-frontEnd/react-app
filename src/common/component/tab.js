@@ -14,7 +14,6 @@ export default function Tab(props) {
 
   useEffect(() => {
     bScroll = new BScroll(bannerWrap.current, {
-      
       scrollX: true,
       scrollY: false,
       eventPassthrough: "vertical",
@@ -41,13 +40,17 @@ export default function Tab(props) {
             return <li key={index}>{render(item)}</li>;
           })}
         </ul>
-        <ul className="banner_nav">
-          {data.map((item, index) => {
-            return (
-              <li key={index} className={index === now ? "active" : ""}></li>
-            );
-          })}
-        </ul>
+        {data.length <= 1 ? (
+          ""
+        ) : (
+          <ul className="banner_nav">
+            {data.map((item, index) => {
+              return (
+                <li key={index} className={index === now ? "active" : ""}></li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </div>
   );
