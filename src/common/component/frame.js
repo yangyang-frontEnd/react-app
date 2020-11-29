@@ -38,13 +38,14 @@ function Frame(props) {
     pageScroll = new BScroll(wrap.current, {
       preventDefaultException: {
         tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|AUDIO|A)$/,
+        className:/(^|\s)work_a(\s|$)/
       },
       pullUpLoad: pullUp
         ? {
             threshold: 200,
           }
         : false,
-      pullUpLoad: true,
+      // pullUpLoad: true,
     });
     function handle() {
       // console.log(getWorksData);

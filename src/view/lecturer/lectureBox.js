@@ -1,13 +1,20 @@
-import React from "react";
+import React,{useEffect,useRef} from "react";
+import BScroll from "better-scroll"
 
 export default function LectureBox(props) {
-  let { alertData,setShow } = props;
-  console.log(alertData);
+  let { alertData,hideAlert } = props;
+//   console.log('讲师信息',alertData);
+let wrap = useRef(null)
+useEffect(()=>{
+let bscroll = new BScroll(wrap.current,{
+    scrollbar:true
+})
+},[])
   return (
     <aside className="elastic">
       <div className="elastic_box">
         <span className="close" onTouchEnd={()=>{
-            setShow(false)
+            hideAlert()
         }}>关闭</span>
         <div className="elastic_img">
           <img
@@ -18,7 +25,7 @@ export default function LectureBox(props) {
         </div>
         <div className="elastic_txt">
           <h3>{alertData.title}-妙味课堂 全职讲师</h3>
-          <div className="elastic_content">
+          <div className="elastic_content" ref={wrap}>
             {/*                     <p>
                         WEB强势品牌 HTML5梦工厂 联合 IT实体培训机构 妙味课堂 强强联手、为广大学员打造了崭新的IT培训新品牌：WEB学院，近期在上海开设第一个分点，为大家带来全新授课模式与最快乐的学习体验！
                     </p>

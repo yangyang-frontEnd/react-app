@@ -21,12 +21,16 @@ function Lecturer(props) {
     setShow(true);
   }
 
+  function hideAlert() {
+    setShow(false)
+  }
+
   useEffect(() => {
     dispatch(getLecturers());
   }, []);
   return (
     <div>
-      <Frame pullUp={false}>
+      <Frame pullUp={true}>
         <div className="main" style={{ backgroundColor: "#fff" }}>
           <div className="teacher_banner">
             <h2>
@@ -39,7 +43,7 @@ function Lecturer(props) {
         </div>
       </Frame>
       {show ? (
-        <LectureBox alertData={alertData} setShow={setShow}></LectureBox>
+        <LectureBox alertData={alertData} hideAlert={hideAlert}></LectureBox>
       ) : (
         ""
       )}
