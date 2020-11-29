@@ -1,6 +1,7 @@
 import React from "react";
 import Tab from "../../common/component/tab";
-import Acticle from "./article"
+import Acticle from "./article";
+import Good from "./good"
 
 export default function Main(props) {
   let { data } = props;
@@ -13,7 +14,10 @@ export default function Main(props) {
         }}
       ></Tab>
       <div className="miiaov_box">
-          <Acticle data={data}></Acticle>
+        <Acticle data={data}></Acticle>
+        <article className="miiaov_comment">
+          <Good goodNum={data.good} id={data.id}></Good>
+        </article>
       </div>
     </div>
   );

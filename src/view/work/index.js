@@ -13,7 +13,7 @@ function Work(props) {
   let { dispatch, loading, data } = props;
   let id = props.match.params.id;
 
-  console.log(loading);
+  // console.log(loading);
   useMemo(() => {}, []);
 
   useEffect(() => {
