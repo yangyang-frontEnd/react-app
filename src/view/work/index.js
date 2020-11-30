@@ -60,7 +60,7 @@ function Work(props) {
       >
         回复本帖
       </footer>
-      <Message show={showMessage} setShow={setShow}></Message>
+      <Message show={showMessage} setShow={setShow} id={id}></Message>
     </div>
   );
 }

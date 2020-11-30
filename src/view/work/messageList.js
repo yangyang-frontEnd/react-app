@@ -30,7 +30,7 @@ function MessageListView(props) {
               <div className="comment_txt">{item.content}</div>
               <div className="comment_footer">
                 <time>
-                  <ToDate time={item.create_time}></ToDate>分钟前
+                  <ToDate time={item.create_time}></ToDate>
                 </time>
                 <button>编辑</button>
               </div>
