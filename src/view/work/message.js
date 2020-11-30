@@ -20,6 +20,9 @@ function Message(props) {
         onChange={({ target }) => {
           setInfo(target.value);
         }}
+        onBlur={()=>{
+          setShow(false)
+        }}
       />
       {put ? (
         <footer className="miiapv_footer put">评论提交中...</footer>
@@ -47,9 +50,9 @@ function Message(props) {
                     username: login,
                   },
                 });
-
                 setPut(false);
                 setInfo("");
+                setShow(false);
               }
             });
             setPut(true);

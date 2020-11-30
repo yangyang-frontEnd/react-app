@@ -33,6 +33,8 @@ function Register(props) {
       });
   }
 
+  let point = {};
+
   return (
     <div className="register_box">
       <h3>注册账号</h3>
@@ -84,8 +86,26 @@ function Register(props) {
             <img
               className="verify"
               src={vcodeSrc}
-              onClick={() => {
+              /*               onClick={() => {
                 setVcodeSrc("/miaov/user/verify?" + Date.now());
+              }} */
+              onTouchStart={(e) => {
+                let touch = e.changedTouches[0];
+                point.x = touch.pageX;
+                point.y = touch.pageY;
+              }}
+              onTouchEnd={(e) => {
+                let touch = e.changedTouches[0];
+                let nowPoint = {
+                  x: touch.pageX,
+                  y: touch.pageY,
+                };
+                if (
+                  Math.abs(nowPoint.x - point.x) < 5 &&
+                  Math.abs(nowPoint.y - point.y) < 5
+                ) {
+                  setVcodeSrc("/miaov/user/verify?" + Date.now());
+                }
               }}
               alt=""
             ></img>

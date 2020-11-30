@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import login from "../../store/action/login";
 import { withRouter } from "react-router-dom"; // 路由信息
-import {useBack} from "../../common/hook/index"
+import { useBack } from "../../common/hook/index";
 
 function Login(props) {
   // console.log(props);
-  const back = useBack()
+  const back = useBack();
 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ function Login(props) {
   const [vcodeShow, setVcodeShow] = useState(false);
   const [vcodeSrc, setVcodeSrc] = useState("/miaov/user/verify?" + Date.now());
 
-let {setDeg} = props
+  let { setDeg } = props;
 
   // 搜集表单数据 Post data
   function toLogin() {
@@ -36,11 +36,13 @@ let {setDeg} = props
           if (data.code != 0) {
             setVcodeSrc("/miaov/user/verify?" + Date.now());
           } else {
-            back(props.history)
+            back(props.history);
           }
         }, 100);
       });
   }
+
+  let point = {};
 
   return (
     <div className="login_box">
@@ -88,8 +90,26 @@ let {setDeg} = props
             <img
               className="verify"
               src={vcodeSrc}
-              onClick={() => {
+              /*               onClick={() => {
                 setVcodeSrc("/miaov/user/verify?" + Date.now());
+              }} */
+              onTouchStart={(e) => {
+                let touch = e.changedTouches[0];
+                point.x = touch.pageX;
+                point.y = touch.pageY;
+              }}
+              onTouchEnd={(e) => {
+                let touch = e.changedTouches[0];
+                let nowPoint = {
+                  x: touch.pageX,
+                  y: touch.pageY,
+                };
+                if (
+                  Math.abs(nowPoint.x - point.x) < 5 &&
+                  Math.abs(nowPoint.y - point.y) < 5
+                ) {
+                  setVcodeSrc("/miaov/user/verify?" + Date.now());
+                }
               }}
               alt=""
             ></img>
@@ -106,9 +126,14 @@ let {setDeg} = props
           登录
         </button>
         <p className="form_tip">
-          没有帐号？<a  onTouchStart={()=>{
-            setDeg(-180)
-          }}>立即注册</a>
+          没有帐号？
+          <a
+            onTouchStart={() => {
+              setDeg(-180);
+            }}
+          >
+            立即注册
+          </a>
         </p>
       </div>
     </div>

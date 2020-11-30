@@ -15,7 +15,6 @@ index.js:1 [BScroll warn]: This plugin has been registered, maybe you need chang
 function Frame(props) {
   // console.log(props);
   const [showMenu, setShowMenu] = useState(false);
-  let pageScroll = null;
 
   const wrap = useRef();
 
@@ -35,10 +34,10 @@ function Frame(props) {
     /* better-scroll会默认阻止事件 如 a标签 href 
        不想阻止默认   preventDefaultException
         */
-    pageScroll = new BScroll(wrap.current, {
+    window.pageScroll = new BScroll(wrap.current, {
       preventDefaultException: {
         tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|AUDIO|A)$/,
-        className:/(^|\s)work_a(\s|$)/
+        className: /(^|\s)work_a(\s|$)/,
       },
       pullUpLoad: pullUp
         ? {
@@ -49,22 +48,26 @@ function Frame(props) {
     });
     function handle() {
       // console.log(getData);
-      if(!getData){
-        return
+      if (!getData) {
+        return;
       }
-      
+
       console.log("上拉加载更多");
       getData().then((res) => {
-        console.log('是否还有请求数据',res);
+        console.log("是否还有请求数据", res);
         if (res) {
-          pageScroll.finishPullUp();
-          pageScroll.refresh();
+          window.pageScroll.finishPullUp();
+          window.pageScroll.refresh();
         } else {
-          pageScroll.closePullUp();
+          window.pageScroll.closePullUp();
         }
       });
     }
-    pageScroll.on("pullingUp", handle);
+    window.pageScroll.on("pullingUp", handle);
+
+    return () => {
+      window.pageScroll = null;
+    };
   }, []);
 
   return (
