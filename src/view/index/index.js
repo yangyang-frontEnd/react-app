@@ -21,20 +21,16 @@ function Index(props) {
   // console.log(props);
   const [page, setPage] = useState(1);
   let { dispatch } = props;
-  function getWorksData(page) {
-   let p =  dispatch(getWorks());
-    setPage(++page)
-    return p
+  function getWorksData() {
+    let p = dispatch(getWorks());
+    return p;
   }
   // console.log(props); //加载3次
   useEffect(() => {
     // getWorksData(page);
   }, []);
   return (
-    <Frame 
-    pullUp={true}
-    getWorksData={getWorksData}
-    >
+    <Frame pullUp={true} getData={getWorksData}>
       <div>
         {/*       {[...".".repeat(20)].map((item,index) => {
         return <div key={index}>我是首页</div>;
@@ -62,7 +58,7 @@ function Index(props) {
           <Works {...props}></Works>
         </section>
       </div>
-      </Frame>
+    </Frame>
   );
 }
 

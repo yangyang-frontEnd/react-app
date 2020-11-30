@@ -1,10 +1,12 @@
 import React from "react";
 import Tab from "../../common/component/tab";
 import Acticle from "./article";
-import Good from "./good"
+import Good from "./good";
+import MessageList from "./messageList"
 
 export default function Main(props) {
   let { data } = props;
+
   return (
     <div className="workDetails">
       <Tab
@@ -17,6 +19,10 @@ export default function Main(props) {
         <Acticle data={data}></Acticle>
         <article className="miiaov_comment">
           <Good goodNum={data.good} id={data.id}></Good>
+          <div className="output">
+            <input type="text" placeholder="发表评论......" />
+            <MessageList></MessageList>
+          </div>
         </article>
       </div>
     </div>

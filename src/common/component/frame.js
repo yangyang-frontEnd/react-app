@@ -29,7 +29,7 @@ function Frame(props) {
     setShowMenu(false);
   }
 
-  let { pullUp, getWorksData } = props;
+  let { pullUp, getData } = props;
 
   useEffect(() => {
     /* better-scroll会默认阻止事件 如 a标签 href 
@@ -48,13 +48,14 @@ function Frame(props) {
       // pullUpLoad: true,
     });
     function handle() {
-      // console.log(getWorksData);
-      if(!getWorksData){
+      // console.log(getData);
+      if(!getData){
         return
       }
       
       console.log("上拉加载更多");
-      getWorksData().then((res) => {
+      getData().then((res) => {
+        console.log('是否还有请求数据',res);
         if (res) {
           pageScroll.finishPullUp();
           pageScroll.refresh();

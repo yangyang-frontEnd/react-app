@@ -7,7 +7,7 @@ function Good(props) {
   let { goodNum, good, user, dispatch, id, goodId } = props;
   // console.log(props);
   let { history } = props;
-
+  // 类似于派生属性
   let [goodCount, setGoodCount] = useState(goodNum);
   useEffect(() => {
     dispatch(getGood(id));
@@ -46,7 +46,7 @@ function Good(props) {
 }
 export default withRouter(
   connect((state) => {
-    console.log(state);
+    // console.log(state);
     return {
       ...state.good,
       user: state.login,

@@ -236,6 +236,7 @@
   bottom: -1.37333333rem;
   font: 0.34666667rem / 1.37333333rem fzlt;
   text-align: center;
+  background-color: #fff;
 }
 .works .more::before {
   content: '';
