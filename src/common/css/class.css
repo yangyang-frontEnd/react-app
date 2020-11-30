@@ -1,7 +1,7 @@
 .class_box {
   background: #3189ce url('../images/class_bg.jpg') no-repeat 0 0 / 100% 100%;
   overflow: hidden;
-  padding: 0 0.26666667rem;
+  /* padding: 0 0.26666667rem; */
   height: 100%;
 }
 .class_box h2 {
